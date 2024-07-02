@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajeetkumar Biradar - Portfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#skills">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Hi, I'm <span class="text-primary">Ajeetkumar Biradar</span></h1>
+                <p class="lead">I'm a professional Web Developer. Our main goal is to help & satisfy the local & global clients by web development solutions.</p>
+                <div class="mt-4">
+                    <a href="www.linkedin.com/in/ajeetkumar-biradar-81037126a" class="text-light mr-3" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="#" class="text-light mr-3" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://github.com/ajeetkumar-biradar?tab=repositories" class="text-light mr-3" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{{ url_for('static', filename='img/IMG_1165.jpg') }}" class="img-fluid rounded-circle" alt="Profile Picture" width="250">
+            </div>
+        </div>
+
+        <div class="row mt-5" id="skills">
+            <div class="col-md-12">
+                <h2>Technical Skills</h2>
+                <ul>
+                    <li>Languages: C, Java, Python, JavaScript</li>
+                    <li>Frameworks: Django, Flask, Pandas, Rest</li>
+                    <li>Web Technologies: HTML, CSS, Bootstrap</li>
+                    <li>Database: MySQL, MongoDB</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="education">
+            <div class="col-md-12">
+                <h2>Educational Background</h2>
+                <ul>
+                    <li>MCA Currently Pursuing - Mysore University</li>
+                    <li>BCA 7.55 CGPA - Vivekananda Institute Of Management, Kalaburagi, Gulbarga University, 2022</li>
+                    <li>Pre-University 65.33% - Oxford PU College, Nagarabetta, 2019</li>
+                    <li>High School 62.56% - PSC High School, Sindagi, 2017</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="experience">
+            <div class="col-md-12">
+                <h2>Experience</h2>
+                <h3>Internship</h3>
+                <p><strong>Odoo Developer Intern - Deshpande Foundation, Hubli</strong></p>
+                <ul>
+                    <li>Completed. As an intern, I worked on the Project Bug Tracker and Maintenance Module along with working as an Odoo Developer Intern.</li>
+                    <li><strong>Project Bug Tracker:</strong> Odoo project bug tracker is a comprehensive tool for tracking and managing software bugs, issues, and development tasks within the Odoo ERP ecosystem.</li>
+                    <li><strong>Maintenance:</strong> The maintenance module in Odoo facilitates efficient management of equipment, assets, and preventive maintenance tasks to ensure optimal operational performance.</li>
+                </ul>
+                <p><strong>Python Developer Intern - SciFor Technology, Bangalore</strong></p>
+                <p>Currently undergoing comprehensive training covering Python basics, intermediate and advanced concepts, Django, and data visualization.</p>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="additional-courses">
+            <div class="col-md-12">
+                <h2>Additional Courses</h2>
+                <p><strong>Full Stack Developer Deshpande Skilling, Hubli</strong></p>
+                <p>I have obtained a certification in Full Stack Development from Deshpande Skilling, Hubli.</p>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="projects">
+            <div class="col-md-12">
+                <h2>Projects</h2>
+                <p><strong>Hospital Management System Using Blockchain Algorithm</strong></p>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="personal-details">
+            <div class="col-md-12">
+                <h2>Personal Details</h2>
+                <ul>
+                    <li>Father’s Name: Basavaraj Biradar</li>
+                    <li>Date of Birth: 16-06-2001</li>
+                    <li>Languages Proficiency: Kannada, English, Hindi</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="contact">
+            <div class="col-md-12">
+                <h2>Contact</h2>
+                <p>
+                    Address: At post: Kallur k, Dist: Kalaburagi, Karnataka, Pin code: 585310<br>
+                    Email: ajeetkumarbiradar1234@gmail.com<br>
+                    Mobile: 8050569207
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

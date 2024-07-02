@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="home">
+    <div class="profile-container">
+        <img src="{{ url_for('static', filename='img/IMG_1165.jpg') }}" alt="Ajeetkumar Biradar" class="profile-img">
+        <div class="profile-text">
+            <h1>Hi, I'm Ajeetkumar Biradar</h1>
+            <p>I'm a professional Web Developer. Our main goal is to help & satisfy local & global clients with web development solutions.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ajeetkumarbiradar" target="_blank">LinkedIn</a>
+                <a href="https://www.instagram.com/ajeetkumarbiradar" target="_blank">Instagram</a>
+                <a href="https://github.com/ajeetkumarbiradar" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

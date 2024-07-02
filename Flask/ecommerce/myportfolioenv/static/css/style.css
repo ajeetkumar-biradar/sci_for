@@ -1,0 +1,21 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.container {
+    margin-top: 50px;
+}
