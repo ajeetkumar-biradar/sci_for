@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Product List</h1>
+    <table id="productTable" class="display">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Authors</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td><img src="{{ product.image.url }}" class="img-thumbnail" alt="{{ product.name }}" style="width: 100px; height: 100px;"></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td><a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var table = $('#productTable').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 4 } // Disable sorting for the action column
+            ],
+            "order": [[2, 'asc']] // Sort initially by the description column ascending
+        });
+
+        // Extract unique description values
+        var uniqueDescriptions = table.column(2).data().unique();
+
+        // Populate the select dropdown with options
+        var select = $('<select id="description-filter"><option value="">Filter by Author</option></select>')
+            .appendTo('#productTable_filter')
+            .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+
+                table.column(2)
+                    .search(val ? '^' + val + '$' : '', true, false)
+                    .draw();
+            });
+
+        uniqueDescriptions.sort().each(function (d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>')
+        });
+    });
+</script>
+
+
+</body>
+</html>
