@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        /* Container for the two columns */
+        .container {
+            display: flex;
+        }
+
+        /* Left column for the add todo form */
+        .left-column {
+            flex: 1;
+            padding-right: 20px; /* Add some spacing between columns */
+        }
+
+        /* Right column for the todo list */
+        .right-column {
+            flex: 2;
+            padding-left: 20px; /* Add some spacing between columns */
+        }
+
+        /* Style for list items */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        li:hover {
+            background-color: #f0f0f0; /* Change background color on hover */
+        }
+
+        /* Style for delete button */
+        button.delete-btn {
+            background-color: #ff0000; /* Red background color */
+            color: white; /* White text color */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button.delete-btn:hover {
+            background-color: #cc0000; /* Darker red background color on hover */
+        }
+
+        /* Style for add todo form */
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button.add-btn {
+            background-color: #008CBA; /* Blue background color */
+            color: white; /* White text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button.add-btn:hover {
+            background-color: #005f7f; /* Darker blue background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Todos</h1>
+    <div class="container">
+        <div class="left-column">
+            <form id="addTodoForm">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description"></textarea><br>
+                <button type="submit" class="add-btn">Add Todo</button>
+            </form>
+        </div>
+        <div class="right-column">
+            <h1>Todo List</h1>
+            <ul>
+                {% for todo in todos %}
+                <li>
+                    <input type="checkbox" {% if todo.completed %}checked{% endif %} onclick="toggleCompleted({{ todo.id }})">
+                    <span style="{% if todo.completed %}text-decoration: line-through;{% endif %}">{{ todo.title }}</span>
+                    <p>{{ todo.description }}</p>
+                    <button class="delete-btn" onclick="deleteTodoItem({{ todo.id }})">Delete</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
