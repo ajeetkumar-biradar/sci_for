@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateTicketPrice() {
+            const seatCategory = document.getElementById('seat_category').value;
+            const ticketPrices = {{ ticket_prices|safe }};
+            const priceField = document.getElementById('ticket_price');
+            priceField.value = ticketPrices[seatCategory];
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            updateTicketPrice();  // Set initial price on page load
+        });
+    </script>
+    <style>
+        .form-group label {
+            margin-bottom: 0.5rem;
+        }
+        .card-header {
+            color: black;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a href="{% url 'index' %}" class="navbar-brand">
+            <i class="bi bi-house"></i> Home
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse2">
+            <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <a href="{% url 'booked_tickets' %}" class="nav-item nav-link">
+                    <i class="bi bi-ticket-perforated"></i> Booked Tickets
+                </a>
+                <a href="{% url 'search_trains' %}" class="nav-item nav-link">
+                    <i class="bi bi-search"></i> Search Trains
+                </a>
+                <a href="{% url 'train_portfolio' %}" class="nav-item nav-link">
+                    <i class="bi bi-speedometer2"></i> Train Portfolio
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}" class="nav-item nav-link">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
+                <a href="{% url 'register' %}" class="nav-item nav-link">
+                    <i class="bi bi-pencil-square"></i> Register
+                </a>
+                {% endif %}
+            </div>
+            <form class="d-flex ms-auto">
+                <input type="text" class="form-control me-sm-2" placeholder="Search">
+                <button type="submit" class="btn btn-outline-light">
+                    Search
+                </button>
+            </form>
+            {% if user.is_authenticated %}
+            <div class="dropdown ms-3">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> {{ user.username }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#">
+                        <i class="bi bi-person"></i> Profile
+                    </a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Book Ticket for {{ train.name }}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="passenger_name">Passenger Name</label>
+                            <input type="text" class="form-control" id="passenger_name" name="passenger_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seat_category">Seat Category</label>
+                            <select class="form-control" id="seat_category" name="seat_category" required onchange="updateTicketPrice()">
+                                {% for choice in train.SEAT_CATEGORY_CHOICES %}
+                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticket_price">Ticket Price</label>
+                            <input type="text" class="form-control" id="ticket_price" name="ticket_price" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
