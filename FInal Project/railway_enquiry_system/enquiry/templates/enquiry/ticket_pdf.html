@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        .details, .journey-info, .contact-info {
+            margin-top: 20px;
+        }
+        .details ul, .journey-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .details li, .journey-info li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .details li i, .journey-info li i {
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .fas {
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="fas">&#xf59d;</span> Booking Confirmation</h1>
+        <div class="details">
+            <h2><span class="fas">&#xf007;</span> Passenger Details</h2>
+            <ul>
+                <li><span class="fas">&#xf007;</span> <strong>Passenger Name:</strong> {{ booking.passenger_name }}</li>
+                <li><span class="fas">&#xf0e0;</span> <strong>Email:</strong> {{ booking.email }}</li>
+            </ul>
+        </div>
+        <div class="details">
+            <h2><span class="fas">&#xf238;</span> Booking Details</h2>
+            <ul>
+                <li><span class="fas">&#xf238;</span> <strong>Train:</strong> {{ booking.train.name }}</li>
+                <li><span class="fas">&#xf004;</span> <strong>Seat Number:</strong> {{ booking.seat_number }}</li>
+                <li><span class="fas">&#xf133;</span> <strong>Booking Date:</strong> {{ booking.booking_date }}</li>
+            </ul>
+        </div>
+        <div class="journey-info">
+            <h2><span class="fas">&#xf5a0;</span> Journey Information</h2>
+            <ul>
+                <li><span class="fas">&#xf041;</span> <strong>Source:</strong> {{ booking.train.source }}</li>
+                <li><span class="fas">&#xf041;</span> <strong>Destination:</strong> {{ booking.train.destination }}</li>
+            </ul>
+        </div>
+        <div class="contact-info">
+            <h2><span class="fas">&#xf095;</span> Contact Information</h2>
+            <p>If you have any questions, please contact us:</p>
+            <p><span class="fas">&#xf095;</span> Phone: +1 234 567 890</p>
+            <p><span class="fas">&#xf0e0;</span> Email: support@yourtrainservice.com</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Your Train Service. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
